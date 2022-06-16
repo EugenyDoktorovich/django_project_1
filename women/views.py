@@ -3,28 +3,37 @@ from django.shortcuts import redirect, render
 
 from .models import *
 
-
-menu = ['О сайте','Добавить статью','Обратная связь','Войти']
+#7:47 lesson time, lesson 8
+menu = [
+    {'title': 'О сайте','url_name': 'about'},
+    {'title': 'Добавить статью','url_name': 'addpage'},
+    {'title': 'Обратная связь','url_name': 'contact'},
+    {'title': 'Войти','url_name': 'login'}
+]
 
 
 def index(request): #HttpRequest
     posts = Women.objects.all()
-    return render(request,'women/index.html',{'posts':posts, 'menu':menu, 'title':'Главная страница'})
+    context ={
+        'posts':posts, 
+        'menu':menu, 
+        'title':'Главная страница'
+        }
+    return render(request,'women/index.html', context = context)
 
 def about(request):
     return render(request, 'women/about.html', {'menu':menu, 'title':'О сайте'})
 
+def addpage(request):
+    return HttpResponse('Добавление статьи')
+
+def contact(request):
+    return HttpResponse('Обратная связь')
+
+def login(request):
+    return HttpResponse('Авторизация')
 
 
-def categories(request, catid):
-    if(request.GET):
-        print(request.GET)
-    return HttpResponse(f'<h1>Статьи по категориям</h1><p>{catid}</p>')
-
-def archive(request, year):
-    if int(year) > 2020:
-        return redirect('home',permanent=True)#параметр дает 301 редирект, без него 302
-    return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
 
 def pageNotFound(request,exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
