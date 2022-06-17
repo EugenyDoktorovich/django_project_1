@@ -8,6 +8,7 @@ urlpatterns = [
     path('addpage/',addpage, name= 'addpage'),
     path('contact/',contact, name= 'contact'),
     path('login/',login, name= 'login'),
+    path('post/<int:post_id>/', show_post, name ='post')#post_id - pk связка
 
 ]
 

@@ -8,7 +8,7 @@
 	<p>{{p.content|linebreaks|truncatewords:50}}</p><!-- TEMPLATE ФИЛЬТРЫ: абзацы+отображение первых 50 словы djbook-->
 	{% endautoescape %}
 			<div class="clear"></div>
-			<p class="link-read-post"><a href="#">Читать пост</a></p>
+			<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a></p> <!-- p.get_absolute_url, url если работа с бд, в иных просто url-->
 			</li>
 	{% endfor %}
 </ul>
