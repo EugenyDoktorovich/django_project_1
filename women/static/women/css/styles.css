@@ -372,6 +372,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 .form-input {
     width: 300px;
     font-size: 16px;
+	border: 1px solid #BB5715;
 }
 
 .form-label {
